@@ -1,0 +1,113 @@
+// 仮データ：設問・正解・解説・キーワード・ページURLはここで一元管理します。
+// 公開前に現地のQR設置場所と設問の対応関係を確認してください。
+window.QUIZ_CONFIG = Object.freeze({
+  "title": "クイズで巡る東大本郷",
+  "storageKey": "todai-hongo-quiz-progress-v1",
+  "items": [
+    {
+      "id": 1,
+      "token": "ご",
+      "spot": "赤門",
+      "title": "赤門に残る、江戸の物語",
+      "eyebrow": "HISTORY / 赤門",
+      "question": "東京大学の「赤門」は、もともと何のために建てられた門でしょう？",
+      "answer": "江戸時代に、お姫さまを迎えるため",
+      "explanation": "赤門は1827年、徳川将軍の娘・溶姫（ようひめ）が加賀藩の前田家にお嫁入りするときに建てられました。当時の大名屋敷の面影を、今に伝える貴重な門です。",
+      "trivia": "赤門の正式な名前は「旧加賀屋敷御守殿門（きゅうかがやしきごしゅでんもん）」です。",
+      "source": "東京大学｜国の重要文化財",
+      "sourceUrl": "https://www.u-tokyo.ac.jp/ja/about/campus-guide/b07_04_a.html",
+      "icon": "gate",
+      "file": "answer_1_IYQU.html"
+    },
+    {
+      "id": 2,
+      "token": "し",
+      "spot": "正門と並木道",
+      "title": "まっすぐ続く道の先",
+      "eyebrow": "LANDSCAPE / 正門",
+      "question": "本郷キャンパスの正門から、イチョウ並木の道を進むと正面に見える建物は何でしょう？",
+      "answer": "安田講堂（やすだこうどう）",
+      "explanation": "正門から続く道の先には、東京大学を代表する建物「安田講堂」があります。正門と講堂をつなぐまっすぐな道は、キャンパスの景色を印象づけています。",
+      "trivia": "イチョウの葉は、東京大学のシンボルマークにも使われています。",
+      "source": "東京大学｜安田講堂の紹介",
+      "sourceUrl": "https://www.u-tokyo.ac.jp/focus/ja/features/z0508_00148.html",
+      "icon": "avenue",
+      "file": "answer_2_h6U3.html"
+    },
+    {
+      "id": 3,
+      "token": "ゅ",
+      "spot": "安田講堂",
+      "title": "大講堂に付いた名前",
+      "eyebrow": "ARCHITECTURE / 安田講堂",
+      "question": "「安田講堂」という名前の「安田」は、何に由来するのでしょう？",
+      "answer": "建設のために寄付をした人の名前",
+      "explanation": "正式な名前は「大講堂」です。実業家の安田善次郎（やすだ ぜんじろう）が建設に協力したことから、「安田講堂」とよばれるようになりました。1925年に完成した建物です。",
+      "trivia": "今も大学の式典や、研究について発表する場として使われています。",
+      "source": "東京大学｜東大史Q&A",
+      "sourceUrl": "https://www.u-tokyo.ac.jp/adm/history/09_04_02_j.html",
+      "icon": "hall",
+      "file": "answer_3_e6Fy.html"
+    },
+    {
+      "id": 4,
+      "token": "で",
+      "spot": "三四郎池",
+      "title": "池の名の由来",
+      "eyebrow": "LITERATURE / 三四郎池",
+      "question": "本郷キャンパスの「三四郎池」。その名前のもとになったのは何でしょう？",
+      "answer": "夏目漱石（なつめ そうせき）の小説",
+      "explanation": "夏目漱石の小説『三四郎』に、この池が登場したことから、「三四郎池」という名で親しまれるようになりました。正式には「育徳園心字池（いくとくえんしんじいけ）」といいます。",
+      "trivia": "大学になる前の江戸時代、このあたりは加賀藩の大名屋敷でした。",
+      "source": "東京大学｜三四郎池の紹介",
+      "sourceUrl": "https://www.u-tokyo.ac.jp/focus/ja/features/z0508_00267.html",
+      "icon": "pond",
+      "file": "answer_4_ddiq.html"
+    },
+    {
+      "id": 5,
+      "token": "ん",
+      "spot": "イチョウ並木",
+      "title": "季節を知らせる木々",
+      "eyebrow": "NATURE / イチョウ並木",
+      "question": "本郷キャンパスの並木道で、秋になると黄色く色づく木は何でしょう？",
+      "answer": "イチョウ",
+      "explanation": "正門から安田講堂へ続く道には、イチョウが植えられています。秋には葉が黄色くなり、キャンパスの風景が大きく変わります。イチョウ並木は、この場所の長い歴史を見守ってきました。",
+      "trivia": "この並木道は、1906年ごろにイチョウを移して整えられたと伝えられています。",
+      "source": "東京大学文学部｜安田講堂と銀杏並木",
+      "sourceUrl": "https://www.l.u-tokyo.ac.jp/takara/taidan2-1.html",
+      "icon": "leaf",
+      "file": "answer_5_GdY0.html"
+    },
+    {
+      "id": 6,
+      "token": "も",
+      "spot": "総合図書館",
+      "title": "本が集まる場所の歴史",
+      "eyebrow": "KNOWLEDGE / 総合図書館",
+      "question": "本郷キャンパスの総合図書館は、1923年の大きな地震の後、どうなったでしょう？",
+      "answer": "支援を受けて建て直された",
+      "explanation": "1923年の関東大震災で、以前の図書館の建物は焼けてしまいました。その後、国内外からの支援も受け、現在の本館が1928年に完成しました。",
+      "trivia": "図書館には本だけでなく、研究に役立つさまざまな資料も集められています。",
+      "source": "東京大学附属図書館｜総合図書館",
+      "sourceUrl": "https://www.lib.u-tokyo.ac.jp/ja/library/contents/guide/general",
+      "icon": "library",
+      "file": "answer_6_XUsK.html"
+    },
+    {
+      "id": 7,
+      "token": "ん",
+      "spot": "東京大学のはじまり",
+      "title": "大学の歴史をたどる",
+      "eyebrow": "TIMELINE / 大学の歴史",
+      "question": "東京大学がつくられたのは、どの時代でしょう？",
+      "answer": "明治時代",
+      "explanation": "東京大学は1877年（明治10年）に始まりました。最初は今とは別の場所も使っていましたが、少しずつ本郷に学部が集まり、現在につながるキャンパスになっていきました。",
+      "trivia": "1877年は、江戸時代が終わってから約10年後です。",
+      "source": "東京大学｜東大史Q&A",
+      "sourceUrl": "https://www.u-tokyo.ac.jp/adm/history/09_01_01_j.html",
+      "icon": "book",
+      "file": "answer_7_YY3k.html"
+    }
+  ]
+});
