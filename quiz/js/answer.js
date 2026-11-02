@@ -19,10 +19,12 @@
   put('answer-correct', item.answer);
   put('answer-explanation', item.explanation);
   put('answer-trivia', item.trivia);
+  put('answer-letter-number', `${item.id}番の文字`);
   put('answer-keyword', item.token);
-      if (!result.ok) {
-        put('answer-record-message', 'キーワードは表示されていますが、このブラウザには記録を保存できませんでした。');
-      }
+  document.getElementById('answer-keyword').setAttribute('aria-label', `${item.id}番の文字 ${item.token}`);
+  if (!result.ok) {
+    put('answer-record-message', '文字は表示されていますが、このブラウザには記録を保存できませんでした。');
+  }
   const reference = document.getElementById('answer-source');
   reference.textContent = `参考：${item.source}`;
   reference.href = item.sourceUrl;
@@ -31,7 +33,7 @@
   illustration.alt = `${item.spot}をイメージした装飾イラスト`;
   if (!result.ok) {
     const warning = document.getElementById('storage-warning');
-    warning.textContent = 'このブラウザに解放状態を保存できませんでした。キーワードは表示されていますが、一覧ページに記録されない可能性があります。';
+    warning.textContent = 'このブラウザに解放状態を保存できませんでした。文字は表示されていますが、一覧ページに記録されない可能性があります。';
     warning.hidden = false;
   }
 }());
