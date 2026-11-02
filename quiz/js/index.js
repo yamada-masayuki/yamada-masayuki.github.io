@@ -12,7 +12,7 @@
   fraction.textContent = `${count} / ${total}`;
   bar.style.width = `${(count / total) * 100}%`;
       document.getElementById('progress-track').setAttribute('aria-valuenow', String(count));
-  const summary = `${total}個中${count}個のキーワードを解放しています`;
+  const summary = `${total}文字中${count}文字を解放しています`;
   progressText.textContent = summary;
   document.getElementById('progress-track').setAttribute('aria-label', summary);
 
@@ -26,7 +26,7 @@
     header.className = 'keyword-card-header';
     const num = document.createElement('span');
     num.className = 'keyword-card-number';
-    num.textContent = `NO. ${String(item.id).padStart(2, '0')}`;
+    num.textContent = `${item.id}番`;
     const status = document.createElement('span');
     status.className = `keyword-status ${visited ? 'status-done' : 'status-waiting'}`;
     status.textContent = visited ? '解放済み' : '未発見';
@@ -34,8 +34,8 @@
 
     const value = document.createElement('div');
     value.className = 'keyword-value';
-    value.textContent = visited ? item.token : '？？？？';
-    value.setAttribute('aria-label', visited ? `キーワード ${item.token}` : '未解放のキーワード');
+    value.textContent = visited ? item.token : '？';
+    value.setAttribute('aria-label', visited ? `${item.id}番の文字 ${item.token}` : `${item.id}番の文字は未発見`);
 
     const footer = document.createElement('div');
     footer.className = 'keyword-card-footer';
