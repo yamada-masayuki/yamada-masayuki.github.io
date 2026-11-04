@@ -8,7 +8,7 @@
     const layer = document.createElement('div');
     layer.className = 'balloon-layer';
     layer.setAttribute('aria-hidden', 'true');
-    const colors = ['#d5a08b', '#e6c477', '#93b6a8', '#b4a8c9', '#9cbdcc', '#e8b2a3', '#b8bc80'];
+    const colors = ['#ffcc00', '#0b8bee', '#ffe477', '#b9e1ff', '#fff2b3', '#ffda44', '#72c2ff'];
     // 固定値にして画面の度に予期しない位置に出ないようにする。
     for (let index = 0; index < 16; index++) {
       const balloon = document.createElement('span');
