@@ -14,7 +14,7 @@
   button.type = 'button';
   button.className = 'scan-cta';
   button.innerHTML = '<span class="scan-cta-icon" aria-hidden="true">▣</span><span>次のQRコードを読み取る</span><span aria-hidden="true">→</span>';
-  const anchor = document.querySelector('.unlock-panel .primary-button') || document.querySelector('.progress-panel');
+  const anchor = document.querySelector('.unlock-panel') || document.querySelector('.progress-panel');
   if (!anchor) return;
   anchor.insertAdjacentElement('afterend', button);
 
@@ -61,6 +61,8 @@
   let lastFrame = 0;
   let previousFocus = null;
   let detector = null;
+  let navigating = false;
+  let navigationTimer = 0;
 
   // URLは文字列の前方一致ではなく、同一オリジン＋登録済みパスで厳密に照合する。
   function matchUrl(raw) {
@@ -74,6 +76,7 @@
   function say(message, isError = false) {
     status.textContent = message;
     status.classList.toggle('is-error', isError);
+    status.classList.remove('is-success');
   }
 
   function stopCamera() {
@@ -89,6 +92,8 @@
   function closeScanner() {
     if (!open) return;
     open = false;
+    clearTimeout(navigationTimer);
+    navigating = false;
     generation++;
     stopCamera();
     modal.hidden = true;
@@ -98,14 +103,22 @@
   }
 
   function onDetected(raw) {
+    if (!open || navigating) return true;
     const found = matchUrl(raw);
     if (!found) {
       say('このクイズのQRコードではありません。別のコードを読み取ってください。', true);
       return false;
     }
-    say(`${found.title}の解説ページへ移動します。`);
-    closeScanner();
-    window.location.assign(found.url);
+    navigating = true;
+    generation++;
+    stopCamera();
+    retry.hidden = true;
+    modal.querySelector('.scanner-pick').disabled = true;
+    say(`✓ 読み取り成功！ ${found.title}の解答ページを開きます。`);
+    status.classList.add('is-success');
+    navigationTimer = window.setTimeout(() => {
+      if (open && navigating) window.location.assign(found.url);
+    }, 1000);
     return true;
   }
 
@@ -152,6 +165,7 @@
   }
 
   async function startCamera() {
+    if (navigating) return;
     const token = ++generation;
     stopCamera();
     retry.hidden = true;
@@ -206,6 +220,7 @@
   function showScanner() {
     if (open) return;
     open = true;
+    modal.querySelector('.scanner-pick').disabled = false;
     previousFocus = document.activeElement;
     modal.hidden = false;
     document.body.classList.add('scanner-is-open');
@@ -214,7 +229,7 @@
   }
 
   async function inspectFile(file) {
-    if (!file || !open) return;
+    if (!file || !open || navigating) return;
     if (!file.type.startsWith('image/')) { say('画像ファイルを選択してください。', true); return; }
     if (file.size > 20 * 1024 * 1024) { say('画像が大きすぎます。20MB以下の写真を選択してください。', true); return; }
     if (!createDetector()) { say('QR読み取りプログラムを読み込めませんでした。', true); return; }
@@ -259,12 +274,12 @@
     else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
   });
   document.addEventListener('visibilitychange', () => {
-    if (open && document.hidden) {
+    if (open && !navigating && document.hidden) {
       generation++;
       stopCamera();
       retry.hidden = false;
       say('カメラを停止しました。再開する場合は「カメラを再試行」を押してください。');
     }
   });
-  window.addEventListener('pagehide', () => { generation++; stopCamera(); });
+  window.addEventListener('pagehide', closeScanner);
 }());

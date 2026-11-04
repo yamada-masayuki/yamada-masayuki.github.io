@@ -4,7 +4,7 @@
   const button = document.createElement('button');
   button.type = 'button';
   button.className = 'map-toggle';
-  button.textContent = '地図・訪問状況';
+  button.innerHTML = '<svg class="map-icon" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m3 5 6-2 6 2 6-2v16l-6 2-6-2-6 2Z"/><path d="M9 3v16M15 5v16"/></svg><span>地図・訪問状況</span>';
   button.setAttribute('aria-haspopup', 'dialog');
   const dialog = document.createElement('dialog');
   dialog.className = 'exploration-map';
