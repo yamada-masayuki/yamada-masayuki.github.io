@@ -10,7 +10,7 @@
   dialog.className = 'exploration-map';
   dialog.setAttribute('aria-labelledby', 'map-heading');
   dialog.innerHTML = `
-    <div class="map-heading"><h2 id="map-heading">散策マップ</h2><button type="button" class="map-close" aria-label="地図を閉じる">閉じる ×</button></div>
+    <div class="map-heading"><h2 id="map-heading">散策マップ</h2><button type="button" class="map-close" aria-label="地図を閉じる"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><path d="m6 6 12 12M18 6 6 18"/></svg></button></div><div class="map-body">
     <p>どこへ向かうかは、あなた次第。地図と周囲の目印を見ながら探索しよう。</p>
     <p class="map-gps-note">GPSによる現在地には誤差があります。建物の近くでは位置がずれることがあるため、地図と周囲の目印を確認して移動してください。このサイトでは現在地を取得しません。</p>
     <div class="map-frame"></div>
@@ -20,7 +20,7 @@
     <p class="map-caption">訪問済み＝このブラウザで解答・解説ページを読み込み済み。番号は文字の番号で、回る順番ではありません。</p>
     <p class="map-record-note" role="status"></p>
     <ul class="map-spots"></ul>
-    <p class="map-caption">地点名は仮データです。地図は散策エリアの参考で、QRコードの正確な設置位置は示していません。「東京大学のはじまり」は設置場所が未設定です。</p>`;
+    <p class="map-caption">地点名は仮データです。地図は散策エリアの参考で、QRコードの正確な設置位置は示していません。「東京大学のはじまり」は設置場所が未設定です。</p></div>`;
   document.body.append(button, dialog);
   button.setAttribute('aria-controls', 'exploration-map');
   dialog.id = 'exploration-map';
@@ -55,6 +55,18 @@
     dialog.showModal();
   });
   dialog.querySelector('.map-close').addEventListener('click', () => dialog.close());
+  // ダイアログ内の余白や、地図から外へドラッグした操作では閉じない。
+  function outside(event) {
+    const rect = dialog.getBoundingClientRect();
+    return event.clientX < rect.left || event.clientX > rect.right ||
+      event.clientY < rect.top || event.clientY > rect.bottom;
+  }
+  let startedOutside = false;
+  dialog.addEventListener('pointerdown', (event) => { startedOutside = event.target === dialog && outside(event); });
+  dialog.addEventListener('click', (event) => {
+    if (startedOutside && event.target === dialog && outside(event)) dialog.close();
+    startedOutside = false;
+  });
   dialog.addEventListener('close', () => button.focus());
   window.addEventListener('storage', () => { if (dialog.open) render(); });
   window.addEventListener('pageshow', () => { if (dialog.open) render(); });

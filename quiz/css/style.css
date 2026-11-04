@@ -306,3 +306,12 @@ body { padding-bottom: calc(82px + env(safe-area-inset-bottom)); }
 .scanner-status.is-error { background:#fff0e8; border-color:#974736; color:#873e2d; }
 .scanner-status.is-success { background:#e5f3ff; border-color:#0868b3; color:#07558f; }
 .scanner-action:disabled { opacity:.5; cursor:default; }
+
+/* 地図の閉じる操作と、フッターからの帰り道 */
+.site-footer { flex-wrap:wrap; }
+.footer-home { color:#0868b3; font-size:13px; font-weight:700; text-decoration:underline; text-underline-offset:4px; min-height:48px; display:inline-flex; align-items:center; }
+.exploration-map { overflow:hidden; }
+.exploration-map[open] { display:flex; flex-direction:column; }
+.map-heading { flex:none; padding-bottom:12px; border-bottom:1px solid #e7dfc8; }
+.map-close { width:48px; height:48px; padding:10px; display:grid; place-items:center; }
+.map-body { min-height:0; overflow-y:auto; overscroll-behavior:contain; padding-top:4px; }
