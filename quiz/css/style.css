@@ -315,3 +315,24 @@ body { padding-bottom: calc(82px + env(safe-area-inset-bottom)); }
 .map-heading { flex:none; padding-bottom:12px; border-bottom:1px solid #e7dfc8; }
 .map-close { width:48px; height:48px; padding:10px; display:grid; place-items:center; }
 .map-body { min-height:0; overflow-y:auto; overscroll-behavior:contain; padding-top:4px; }
+
+/* 全ページ共通のクイズヘッダーと説明 */
+.brand-mark::before, .brand-mark::after { content:none; }
+.brand-mark { color:#29251f; font:900 28px/1 Arial,sans-serif; }
+.brand-text { white-space:normal; min-width:0; }
+.brand-text small { font-size:10px; letter-spacing:.025em; line-height:1.5; text-transform:none; }
+.guide-toggle { flex:none; min-height:48px; padding:8px 12px; border:1px solid #b4ad9d; border-radius:8px; background:#fff; color:#29251f; font:700 13px/1.5 sans-serif; cursor:pointer; }
+.guide-toggle:hover { background:#f3efdf; }
+.guide-toggle:focus-visible, .quiz-guide button:focus-visible { outline:3px solid #0868b3; outline-offset:3px; }
+.quiz-guide { width:min(600px,calc(100% - 24px)); max-height:85dvh; padding:20px; border:0; border-radius:12px; overflow:hidden; color:#29251f; background:#fffcf2; }
+.quiz-guide[open] { display:flex; flex-direction:column; }
+.quiz-guide::backdrop { background:#171d27b3; }
+.guide-heading { display:flex; align-items:center; justify-content:space-between; gap:12px; border-bottom:1px solid #e7dfc8; padding-bottom:12px; flex:none; }
+.guide-heading h2 { margin:0; }
+.guide-close { flex:none; width:48px; height:48px; background:white; border:1px solid #b4ad9d; border-radius:8px; color:#29251f; font-size:28px; cursor:pointer; }
+.guide-body { overflow-y:auto; min-height:0; overscroll-behavior:contain; font-size:15px; }
+.guide-body ol { padding-left:24px; }
+.guide-body li { padding-left:4px; margin:20px 0; }
+.guide-body li::marker { font-weight:800; color:#0868b3; }
+.guide-body li p { margin:6px 0; }
+@media(max-width:480px) { .site-header { height:auto; min-height:94px; padding:12px 16px; gap:8px; } .brand { gap:8px; } .brand-mark { width:32px; height:32px; font-size:25px; } .brand-text strong { font-size:12px; } .brand-text small { font-size:9px; } .guide-toggle { padding:8px; font-size:12px; } }

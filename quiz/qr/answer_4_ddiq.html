@@ -13,15 +13,16 @@
   <script defer src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.js"></script>
   <script defer src="../js/qr-scanner.js"></script>
   <script defer src="../js/exploration-map.js"></script>
+  <script defer src="../js/guide.js"></script>
 </head>
 <body data-page-id="4">
   <div class="site-shell">
     <header class="site-header">
       <a class="brand" href="../index.html" aria-label="文字一覧へ戻る">
-        <span class="brand-mark" aria-hidden="true"><span></span><span></span></span>
-        <span class="brand-text"><small>DISCOVER HONGO</small><strong>クイズで巡る東大本郷</strong></span>
+        <span class="brand-mark" aria-hidden="true">?</span>
+        <span class="brand-text"><small>Discover UTokyo Hongo with Quizzes</small><strong>クイズで巡る東大本郷</strong></span>
       </a>
-      <span class="header-label">QUIZ &amp; ANSWER</span>
+      <button type="button" class="guide-toggle" aria-haspopup="dialog" aria-controls="quiz-guide">説明を見る</button>
     </header>
     <main id="main-content">
       <section class="answer-hero">
