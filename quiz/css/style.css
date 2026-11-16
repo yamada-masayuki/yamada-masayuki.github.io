@@ -60,7 +60,7 @@ h2 { font-size: 20px; letter-spacing: .025em; line-height: 1.55; }
 .section-heading { display:flex; justify-content:space-between; align-items:flex-end; gap:16px; margin-bottom:21px; }
 .section-heading h2 { margin:7px 0 0; font-weight:800; font-size:22px; }
 .section-aside { font-size: 11px; color: var(--muted); white-space: nowrap; padding-bottom: 4px; }
-.keyword-grid { display:grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin:0; padding:0; list-style:none; }
+.keyword-grid { display:grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin:0; padding:0; list-style:none; }
 .keyword-card { min-width:0; border-radius: var(--radius); background: var(--white); border:1px solid var(--line); padding: 17px 16px 14px; display: flex; flex-direction: column; min-height: 172px; transition: border-color .15s ease; }
 .keyword-card.is-unlocked { background: #fff2b3; border-color: #d4a900; }
 .keyword-card-header { display:flex; align-items:center; justify-content:space-between; gap:6px; flex-wrap:wrap; }
@@ -335,7 +335,8 @@ body { padding-bottom: calc(82px + env(safe-area-inset-bottom)); }
 .guide-body li p { margin:6px 0; }
 @media(max-width:480px) { .site-header { height:auto; min-height:94px; padding:12px 16px; gap:8px; } .brand { gap:8px; } .brand-mark { width:32px; height:32px; font-size:25px; } .brand-text strong { font-size:12px; } .brand-text small { font-size:9px; } .guide-toggle { padding:8px; font-size:12px; } }
 
-/* Touch and keyboard controls for arranging discovered letters. */
-.letter-controls { display:flex; gap:6px; margin-top:8px; }
-.letter-controls button { flex:1; min-width:0; min-height:44px; padding:4px; border:1px solid var(--line); border-radius:8px; background:#fff; color:var(--forest); font:inherit; font-size:12px; cursor:pointer; }
-.letter-controls button:focus-visible { outline:3px solid #0b8bee; outline-offset:2px; }
+/* Keep three-column cards readable on narrow phones. */
+.card-link { overflow-wrap:anywhere; }
+@media (max-width: 380px) {
+  .is-unlocked .keyword-value { font-size:52px; }
+}

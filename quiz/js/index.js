@@ -13,7 +13,7 @@
   fraction.textContent = `${count} / ${total}`;
   bar.style.width = `${(count / total) * 100}%`;
   document.getElementById('progress-track').setAttribute('aria-valuenow', String(count));
-  const summary = `${total}文字中${count}文字を解放しています`;
+  const summary = `${total}文字中${count}文字を発見しています`;
   progressText.textContent = summary;
   document.getElementById('progress-track').setAttribute('aria-label', summary);
 
@@ -27,7 +27,7 @@
     header.className = 'keyword-card-header';
     const status = document.createElement('span');
     status.className = `keyword-status ${visited ? 'status-done' : 'status-waiting'}`;
-    status.textContent = visited ? '解放済み' : '未発見';
+    status.textContent = visited ? '発見！' : '未発見';
     header.append(status);
 
     const value = document.createElement('div');
@@ -47,27 +47,10 @@
       arrow.textContent = ' ↗';
       link.append(arrow);
       footer.append(link);
-      const controls = document.createElement('div');
-      controls.className = 'letter-controls';
-      [-1, 1].forEach((direction) => {
-        const button = document.createElement('button');
-        button.type = 'button';
-        button.textContent = direction < 0 ? '← 移動' : '移動 →';
-        button.setAttribute('aria-label', `${item.token}を${direction < 0 ? '前' : '後ろ'}へ移動`);
-        button.addEventListener('click', () => {
-          const neighbor = direction < 0 ? li.previousElementSibling : li.nextElementSibling;
-          if (!neighbor || !neighbor.classList.contains('is-unlocked')) return;
-          if (direction < 0) grid.insertBefore(li, neighbor);
-          else grid.insertBefore(neighbor, li);
-          button.focus();
-        });
-        controls.append(button);
-      });
-      footer.append(controls);
     } else {
       const text = document.createElement('span');
       text.className = 'card-hint';
-      text.textContent = 'QRコードを読み取って解放';
+      text.textContent = 'QRコードを読み取って発見';
       footer.append(text);
     }
     li.append(header, value, footer);
