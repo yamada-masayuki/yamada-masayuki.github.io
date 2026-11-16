@@ -12,16 +12,16 @@
   const result = window.QuizProgress.markVisited(pageId);
   document.title = `${item.title} | クイズで巡る東大本郷`;
   const put = (id, value) => { document.getElementById(id).textContent = value; };
-  put('answer-number', `QUIZ ${String(item.id).padStart(2, '0')} / 07`);
+  put('answer-number', 'QUIZ & DISCOVERY');
   put('answer-spot', item.eyebrow);
   put('answer-title', item.title);
   put('answer-question', item.question);
   put('answer-correct', item.answer);
   put('answer-explanation', item.explanation);
   put('answer-trivia', item.trivia);
-  put('answer-letter-number', `${item.id}番の文字`);
+  put('answer-letter-number', '発見した文字');
   put('answer-keyword', item.token);
-  document.getElementById('answer-keyword').setAttribute('aria-label', `${item.id}番の文字 ${item.token}`);
+  document.getElementById('answer-keyword').setAttribute('aria-label', `発見した文字 ${item.token}`);
   if (!result.ok) {
     put('answer-record-message', '文字は表示されていますが、このブラウザには記録を保存できませんでした。');
   }

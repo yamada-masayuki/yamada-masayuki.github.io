@@ -64,7 +64,6 @@ h2 { font-size: 20px; letter-spacing: .025em; line-height: 1.55; }
 .keyword-card { min-width:0; border-radius: var(--radius); background: var(--white); border:1px solid var(--line); padding: 17px 16px 14px; display: flex; flex-direction: column; min-height: 172px; transition: border-color .15s ease; }
 .keyword-card.is-unlocked { background: #fff2b3; border-color: #d4a900; }
 .keyword-card-header { display:flex; align-items:center; justify-content:space-between; gap:6px; flex-wrap:wrap; }
-.keyword-card-number { font-size: 20px; font-weight: 800; line-height: 1.5; color: var(--forest); }
 .keyword-status { font-size: 10px; border-radius:40px; padding:2px 9px 3px; line-height: 1.7; white-space: nowrap; }
 .status-waiting { color: #686254; background:#f3efdf; }
 .status-done { color: var(--forest); background: #ffcc00; font-weight:700; }
@@ -79,7 +78,6 @@ h2 { font-size: 20px; letter-spacing: .025em; line-height: 1.55; }
 .completion { margin-top:32px; padding:28px 26px 30px; background:#fff2b3; border:1px solid #d4a900; border-radius:var(--radius); text-align:center; }
 .completion h2 { font-size:21px; margin:9px 0 4px; }
 .completion p { margin:4px 0; color:var(--forest); font-size:13px; }
-.completed-word { font-size:clamp(25px,5.5vw,38px) !important; font-weight:900; letter-spacing:.13em; margin:18px 0 14px !important; }
 .completion .completion-detail { line-height:1.85; }
 .instruction { display:flex; align-items:flex-start; gap:11px; margin-top:29px; }
 .instruction-icon { flex:none; display:grid; place-items:center; width:18px; height:18px; border:1px solid #9a9f9b; color:#818782; border-radius:50%; font:700 11px Arial,sans-serif; margin-top:2px; }
@@ -336,3 +334,8 @@ body { padding-bottom: calc(82px + env(safe-area-inset-bottom)); }
 .guide-body li::marker { font-weight:800; color:#0868b3; }
 .guide-body li p { margin:6px 0; }
 @media(max-width:480px) { .site-header { height:auto; min-height:94px; padding:12px 16px; gap:8px; } .brand { gap:8px; } .brand-mark { width:32px; height:32px; font-size:25px; } .brand-text strong { font-size:12px; } .brand-text small { font-size:9px; } .guide-toggle { padding:8px; font-size:12px; } }
+
+/* Touch and keyboard controls for arranging discovered letters. */
+.letter-controls { display:flex; gap:6px; margin-top:8px; }
+.letter-controls button { flex:1; min-width:0; min-height:44px; padding:4px; border:1px solid var(--line); border-radius:8px; background:#fff; color:var(--forest); font:inherit; font-size:12px; cursor:pointer; }
+.letter-controls button:focus-visible { outline:3px solid #0b8bee; outline-offset:2px; }
