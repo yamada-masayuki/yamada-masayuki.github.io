@@ -1,41 +1,39 @@
 (function () {
   'use strict';
-  const items = [...window.QUIZ_CONFIG.items].sort((a, b) => a.id - b.id);
+  const configuredItems = window.QUIZ_CONFIG.items;
   const state = window.QuizProgress.read();
-  const unlocked = new Set(state.ids);
+  const items = state.ids.map((id) => configuredItems.find((item) => item.id === id));
+  items.push(...Array(configuredItems.length - items.length).fill(null));
   const total = items.length;
-  const count = items.filter((item) => unlocked.has(item.id)).length;
+  const count = state.ids.length;
 
   const fraction = document.getElementById('progress-count');
   const bar = document.getElementById('progress-bar');
   const progressText = document.getElementById('progress-description');
   fraction.textContent = `${count} / ${total}`;
   bar.style.width = `${(count / total) * 100}%`;
-      document.getElementById('progress-track').setAttribute('aria-valuenow', String(count));
+  document.getElementById('progress-track').setAttribute('aria-valuenow', String(count));
   const summary = `${total}文字中${count}文字を解放しています`;
   progressText.textContent = summary;
   document.getElementById('progress-track').setAttribute('aria-label', summary);
 
   const grid = document.getElementById('keyword-list');
   items.forEach((item) => {
-    const visited = unlocked.has(item.id);
+    const visited = item !== null;
     const li = document.createElement('li');
     li.className = `keyword-card ${visited ? 'is-unlocked' : 'is-locked'}`;
-    li.style.setProperty('--rare-delay', `${(item.id - 1) * -0.72}s`);
+    li.style.setProperty('--rare-delay', `${grid.children.length * -0.72}s`);
     const header = document.createElement('div');
     header.className = 'keyword-card-header';
-    const num = document.createElement('span');
-    num.className = 'keyword-card-number';
-    num.textContent = `${item.id}番`;
     const status = document.createElement('span');
     status.className = `keyword-status ${visited ? 'status-done' : 'status-waiting'}`;
     status.textContent = visited ? '解放済み' : '未発見';
-    header.append(num, status);
+    header.append(status);
 
     const value = document.createElement('div');
     value.className = 'keyword-value';
     value.textContent = visited ? item.token : '？';
-    value.setAttribute('aria-label', visited ? `${item.id}番の文字 ${item.token}` : `${item.id}番の文字は未発見`);
+    value.setAttribute('aria-label', visited ? `発見した文字 ${item.token}` : '未発見の文字');
 
     const footer = document.createElement('div');
     footer.className = 'keyword-card-footer';
@@ -49,6 +47,23 @@
       arrow.textContent = ' ↗';
       link.append(arrow);
       footer.append(link);
+      const controls = document.createElement('div');
+      controls.className = 'letter-controls';
+      [-1, 1].forEach((direction) => {
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.textContent = direction < 0 ? '← 移動' : '移動 →';
+        button.setAttribute('aria-label', `${item.token}を${direction < 0 ? '前' : '後ろ'}へ移動`);
+        button.addEventListener('click', () => {
+          const neighbor = direction < 0 ? li.previousElementSibling : li.nextElementSibling;
+          if (!neighbor || !neighbor.classList.contains('is-unlocked')) return;
+          if (direction < 0) grid.insertBefore(li, neighbor);
+          else grid.insertBefore(neighbor, li);
+          button.focus();
+        });
+        controls.append(button);
+      });
+      footer.append(controls);
     } else {
       const text = document.createElement('span');
       text.className = 'card-hint';
@@ -61,7 +76,6 @@
 
   const completion = document.getElementById('completion');
   if (count === total) {
-    document.getElementById('completed-word').textContent = items.map((item) => item.token).join('');
     completion.hidden = false;
     window.QuizCelebration.activate();
   }

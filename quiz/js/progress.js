@@ -7,7 +7,7 @@
 
   function normalizeIds(value) {
     if (!Array.isArray(value)) return [];
-    return [...new Set(value.filter((id) => Number.isInteger(id) && allowedIds.has(id)))].sort((a, b) => a - b);
+    return [...new Set(value.filter((id) => Number.isInteger(id) && allowedIds.has(id)))];
   }
 
   function read() {

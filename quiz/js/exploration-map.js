@@ -17,7 +17,7 @@
     <a class="map-external" href="https://www.google.com/maps/search/?api=1&query=東京大学本郷キャンパス" target="_blank" rel="noopener noreferrer">Googleマップで開く（別タブ） ↗</a>
     <p class="map-caption">地図が表示されない場合は、上のリンクをご利用ください。Googleの地図はオンライン接続が必要です。</p>
     <h3>各地点の訪問状況</h3>
-    <p class="map-caption">訪問済み＝このブラウザで解答・解説ページを読み込み済み。番号は文字の番号で、回る順番ではありません。</p>
+    <p class="map-caption">訪問済み＝このブラウザで解答・解説ページを読み込み済み。回る順番は自由です。</p>
     <p class="map-record-note" role="status"></p>
     <ul class="map-spots"></ul>
     <p class="map-caption">地点名は仮データです。地図は散策エリアの参考で、QRコードの正確な設置位置は示していません。「東京大学のはじまり」は設置場所が未設定です。</p></div>`;
@@ -29,12 +29,12 @@
     const note = dialog.querySelector('.map-record-note');
     note.textContent = !state.available ? '訪問履歴を読み取れません。訪問状況は不明です。' : state.corrupted ? '訪問履歴が破損しているため、訪問状況は不明です。' : `訪問済み ${state.ids.length} / ${window.QUIZ_CONFIG.items.length}地点。履歴はこのブラウザ内だけに保存されます。`;
     const list = dialog.querySelector('.map-spots');
-    list.replaceChildren(...window.QUIZ_CONFIG.items.map((item) => {
+    list.replaceChildren(...[...window.QUIZ_CONFIG.items].sort((a, b) => a.spot.localeCompare(b.spot, 'ja')).map((item) => {
       const visited = state.ids.includes(item.id);
       const row = document.createElement('li');
       row.className = visited ? 'is-visited' : '';
       const name = document.createElement('span');
-      name.textContent = `${item.id}. ${item.spot}`;
+      name.textContent = item.spot;
       const badge = document.createElement('strong');
       badge.textContent = !state.available || state.corrupted ? '記録不明' : visited ? '✓ 訪問済み' : '未訪問';
       row.append(name, badge);
