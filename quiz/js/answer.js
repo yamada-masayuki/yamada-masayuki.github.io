@@ -10,6 +10,7 @@
 
   // ページを開いた時点で自動的に解放する。ボタン操作は不要。
   const result = window.QuizProgress.markVisited(pageId);
+  if (result.added) window.QuizCelebration.discovery();
   document.title = `${item.title} | クイズで巡る東大本郷`;
   const put = (id, value) => { document.getElementById(id).textContent = value; };
   put('answer-number', 'QUIZ & DISCOVERY');
@@ -18,19 +19,13 @@
   put('answer-question', item.question);
   put('answer-correct', item.answer);
   put('answer-explanation', item.explanation);
-  put('answer-trivia', item.trivia);
+  document.getElementById('answer-illustration').src = `../assets/images/${item.icon}.svg`;
   put('answer-letter-number', '発見した文字');
   put('answer-keyword', item.token);
   document.getElementById('answer-keyword').setAttribute('aria-label', `発見した文字 ${item.token}`);
   if (!result.ok) {
     put('answer-record-message', '文字は表示されていますが、このブラウザには記録を保存できませんでした。');
   }
-  const reference = document.getElementById('answer-source');
-  reference.textContent = `参考：${item.source}`;
-  reference.href = item.sourceUrl;
-  const illustration = document.getElementById('answer-illustration');
-  illustration.src = `../assets/images/${item.icon}.svg`;
-  illustration.alt = `${item.spot}をイメージした装飾イラスト`;
   if (!result.ok) {
     const warning = document.getElementById('storage-warning');
     warning.textContent = 'このブラウザに解放状態を保存できませんでした。文字は表示されていますが、一覧ページに記録されない可能性があります。';
