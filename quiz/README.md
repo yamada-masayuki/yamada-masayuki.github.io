@@ -1,7 +1,7 @@
-# クイズで巡る東大本郷（Ver. 2.7）
+# クイズで巡る東大本郷
 
 GitHub Pagesで動作する、HTML・CSS・JavaScriptによる静的Webサイトです。
-クイズの問題・正解・解説・設置場所は **仮データ** です。
+本番クイズは「本郷いちょう遊歩クイズ案（回答）.xlsx」の「フォームの回答 1」に基づきます。全7地点で1文字ずつ集めます。
 
 ## バージョンヒストリー
 
@@ -9,7 +9,7 @@ GitHub Pagesで動作する、HTML・CSS・JavaScriptによる静的Webサイト
 
 | バージョン | 変更内容 |
 | --- | --- |
-| 2.7（今回） | 発見ラベルを「発見！」に変更。文字一覧を3列にし、見出しを「発見した文字」に変更。画面上の並べ替え操作を削除。 |
+| 2.7 | 発見ラベルを「発見！」に変更。文字一覧を3列にし、見出しを「発見した文字」に変更。画面上の並べ替え操作を削除。 |
 | 2.6 | 発見順で文字を表示し、番号を非表示に変更。矢印での並べ替えと学生スタッフへの案内を追加。合言葉の自動表示を廃止。 |
 | 2.5 | クイズを表す「?」アイコン、英語表記の更新、全ページの「説明を見る」ボタンと参加方法の説明画面を追加。変更履歴を整備。 |
 | 2.4 | 全ページのフッターに文字一覧へのリンクを追加。地図の閉じるアイコンを固定し、背景クリックでの閉鎖に対応。 |
@@ -45,9 +45,9 @@ GitHub Pages の配置例：`https://yamada-masayuki.github.io/quiz/`
 
 **7つの解答ページのファイル名と、既存のQRコードURLは変更していません。** 以前作成したQRコードはそのまま使えます。
 
-保存キー：
-- 既存の訪問履歴：`todai-hongo-quiz-progress-v1`（**変更なし**）
-- 初回お祝い表示済みフラグ：`todai-hongo-quiz-progress-v1-celebration-seen-v1`（**新規**）
+Ver. 2.1〜2.7（仮クイズ）で使用した保存キー：
+- 既存の訪問履歴：`todai-hongo-quiz-progress-v1`
+- 初回お祝い表示済みフラグ：`todai-hongo-quiz-progress-v1-celebration-seen-v1`
 
 新バージョンを上書き配置しても、ブラウザに保存されている進捗データは維持されます。ブラウザ・端末間での同期はありません。
 
@@ -63,7 +63,20 @@ GitHub Pages の配置例：`https://yamada-masayuki.github.io/quiz/`
 - **`js/celebration.js`（追加）**：風船アニメーションと初回実行フラグ
 - `css/style.css`：共通画面、カメラUI、ホログラム・風船アニメーション
 - `assets/images/`：装飾用SVG
-- `QR_URL一覧.csv`：7件のQRコードURLの一覧
+
+## 設置地点とQRコード
+
+公開URLの共通部分は `https://yamada-masayuki.github.io/quiz/qr/` です。掲示前に各QRコードを読み取り、対応する解答ページを確認してください。
+
+| 設置地点 | ファイル名 |
+| --- | --- |
+| 総合図書館 | `answer_6_XUsK.html` |
+| 三四郎池 | `answer_4_ddiq.html` |
+| 正門 | `answer_2_h6U3.html` |
+| 赤門 | `answer_1_IYQU.html` |
+| 法文1号館 | `answer_5_GdY0.html` |
+| 安田講堂 | `answer_3_e6Fy.html` |
+| 工学部広場 | `answer_7_YY3k.html` |
 
 ## GitHub Pagesへの更新手順
 
@@ -86,31 +99,29 @@ GitHub Pages の配置例：`https://yamada-masayuki.github.io/quiz/`
 
 > ブラウザからのカメラ利用は原則HTTPSが必要です（`localhost` は開発用の例外）。`file://` で開く方式は推奨しません。カメラが使用できるかどうかは、端末・ブラウザ・許可設定に依存します。
 
-## テスト用：進捗と風船演出の初期化
+## 発見演出とテスト用の進捗初期化
 
-ブラウザの開発者ツールで、次のコードを実行してから再読み込みします。
+新しい文字を記録したとき、解答ページに添付素材の4色の扇形が広がります。再訪問時と、視差効果を減らす設定では省略します。
+
+本番の進捗と完成演出には専用キーを使い、仮クイズからの移行は行いません。テストで本番の記録を初期化するには、ブラウザの開発者ツールで次を実行して再読み込みします。
 
 ```javascript
 // 進捗と初回風船表示フラグの両方を消去する
-localStorage.removeItem('todai-hongo-quiz-progress-v1');
-localStorage.removeItem('todai-hongo-quiz-progress-v1-celebration-seen-v1');
+localStorage.removeItem('todai-hongo-quiz-progress-production-v1');
+localStorage.removeItem('todai-hongo-quiz-progress-production-v1-celebration-seen-v1');
 ```
 
 すでに7文字完成していて、風船だけを再確認したいときは、2行目のフラグだけを削除して一覧ページを再読み込みしてください。
 
-## 仮クイズの参考資料
+## 本番クイズの出典
 
-- [赤門：東京大学](https://www.u-tokyo.ac.jp/ja/about/campus-guide/b07_04_a.html)
-- [安田講堂：東京大学](https://www.u-tokyo.ac.jp/adm/history/09_04_02_j.html)
-- [三四郎池：東京大学](https://www.u-tokyo.ac.jp/focus/ja/features/z0508_00267.html)
-- [総合図書館：東京大学](https://www.lib.u-tokyo.ac.jp/ja/library/contents/guide/general)
-- [東京大学の創立：東京大学](https://www.u-tokyo.ac.jp/adm/history/09_01_01_j.html)
+問題・正解・解説の原稿は本番用のExcelです。各解説の公開用参考リンクは確認後に掲載します。
 
 ## 散策マップと訪問状況
 
 全8ページの右下に「地図・訪問状況」ボタンを常設しています。地図パネルには本郷キャンパス全体のGoogleマップと7地点の未訪問／訪問済みを表示します。順路や次の目的地は指定しません。番号は表示せず、地点一覧は地点名順です。既存の訪問履歴を参照し、地図を開くだけでは訪問履歴を変更しません。地点一覧に解答ページへのリンクはありません。
 
-Googleマップはパネルの初回表示時に外部読み込みします（APIキー不要の埋め込みURL）。表示されない場合の外部リンクも用意しています。現在地を取得する処理はなく、GPSには誤差がある旨を表示します。地点名は既存の仮データで、正確なQR設置位置のピンはありません。特に「東京大学のはじまり」は具体的な設置場所が未設定です。
+Googleマップはパネルの初回表示時に外部読み込みします（APIキー不要の埋め込みURL）。表示されない場合の外部リンクも用意しています。現在地を取得する処理はなく、GPSには誤差がある旨を表示します。地点一覧は本番の設置地点名です。地図にQRコードの正確な掲示位置のピンはありません。
 
 確認済み：全8ページのパネル開閉、訪問後の状態反映と再表示、履歴破損時の案内、390px幅の表示、Escapeでの閉鎖とフォーカス復帰。外部地図は開発環境のネットワーク制限により表示未検証です。公開環境でのGoogleマップ表示確認が必要です。
 

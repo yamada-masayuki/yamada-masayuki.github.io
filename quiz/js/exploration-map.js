@@ -20,7 +20,7 @@
     <p class="map-caption">訪問済み＝このブラウザで解答・解説ページを読み込み済み。回る順番は自由です。</p>
     <p class="map-record-note" role="status"></p>
     <ul class="map-spots"></ul>
-    <p class="map-caption">地点名は仮データです。地図は散策エリアの参考で、QRコードの正確な設置位置は示していません。「東京大学のはじまり」は設置場所が未設定です。</p></div>`;
+    <p class="map-caption">地図は散策エリアの参考です。QRコードの掲示場所は、各地点で周囲の案内を確認してください。</p></div>`;
   document.body.append(button, dialog);
   button.setAttribute('aria-controls', 'exploration-map');
   dialog.id = 'exploration-map';
