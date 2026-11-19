@@ -107,6 +107,12 @@ h2 { font-size: 20px; letter-spacing: .025em; line-height: 1.55; }
 .correct-block h3 { font-size:13px; margin: 20px 0 8px; }
 .explanation-text { font-size:14px; line-height:2; margin:0; }
 .question-text, .explanation-text { white-space:pre-line; }
+.answer-content rt, .answer-hero rt { font-size:.55em; }
+.answer-photos { display:grid; gap:24px; }
+.answer-photos figure { margin:0; }
+.answer-photos img { display:block; max-width:100%; height:auto; border-radius:10px; }
+.answer-photos figcaption p { margin:10px 0 0; font-size:1rem; line-height:1.7; }
+.answer-photos figcaption small { display:block; margin-top:4px; color:var(--muted); font-size:.8rem; overflow-wrap:anywhere; }
 .unlock-panel { text-align:center; background:var(--forest-deep); color:var(--ink); border-radius:var(--radius); margin-top:30px; padding:32px 25px 36px; }
 .unlock-panel h2 { margin:8px 0 0; font-size:21px; }
 .unlock-panel .unlocked-number { display: inline-block; margin: 20px 0 0; padding: 4px 18px; border: 2px solid #29251f; border-radius: 100px; color: var(--ink); font-size: 24px; font-weight: 800; }
@@ -230,16 +236,16 @@ h2 { font-size: 20px; letter-spacing: .025em; line-height: 1.55; }
 .discovery-confetti, .balloon-layer { position:fixed; inset:0; z-index:1100; overflow:hidden; pointer-events:none; }
 .discovery-confetti svg {
   position:absolute;
-  top:46%;
+  top:50%;
   left:50%;
   width:var(--size);
   height:auto;
-  animation:discovery-burst 1.04s cubic-bezier(.1,.65,.24,1) var(--delay) both;
+  animation:discovery-burst 1.35s cubic-bezier(.1,.65,.24,1) var(--delay) both;
 }
 @keyframes discovery-burst {
   0% { opacity:0; transform:translate(-50%,-50%) rotate(var(--tilt)) scale(.2); }
-  10%, 62% { opacity:1; }
-  100% { opacity:0; transform:translate(var(--x),var(--y)) rotate(calc(var(--tilt) + var(--spin))); }
+  8%, 72% { opacity:1; }
+  100% { opacity:0; transform:translate(calc(var(--x) - 50%),calc(var(--y) - 50%)) rotate(calc(var(--tilt) + var(--spin))); }
 }
 .balloon { position:absolute; bottom:-145px; left:var(--x); width:var(--size); height:125px; animation:balloon-rise var(--duration) ease-in forwards; animation-delay:var(--delay); }
 .balloon-shape { display:block; width:var(--size); height:calc(var(--size) * 1.3); border-radius:48% 48% 45% 45%; background:radial-gradient(ellipse at 33% 25%, rgba(255,255,255,.78), rgba(255,255,255,0) 45%), var(--balloon-color); position:relative; box-shadow:inset -5px -8px 11px rgba(0,0,0,.08); }

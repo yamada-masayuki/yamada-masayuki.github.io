@@ -12,16 +12,22 @@
     layer.className = 'discovery-confetti';
     layer.setAttribute('aria-hidden', 'true');
 
-    for (let index = 0; index < 32; index++) {
-      const angle = index * Math.PI * 0.764;
-      const distance = 18 + (index * 13 % 34);
+    // 画面の縦横比に合わせて、外側の扇が四隅付近まで届くようにする。
+    const directions = 24;
+    for (let index = 0; index < directions * 2; index++) {
+      const outer = index < directions;
+      const angle = (index + (outer ? 0 : 0.5)) * 2 * Math.PI / directions;
+      const x = Math.cos(angle);
+      const y = Math.sin(angle);
+      const reach = (outer ? 47 + index % 4 : 19 + index * 7 % 21)
+        / Math.max(Math.abs(x), Math.abs(y));
       const fan = document.createElementNS(svgNamespace, 'svg');
       fan.setAttribute('viewBox', '0 -67 106 134');
-      fan.style.setProperty('--x', `${Math.cos(angle) * distance}vw`);
-      fan.style.setProperty('--y', `${Math.sin(angle) * distance}vh`);
+      fan.style.setProperty('--x', `${x * reach}vw`);
+      fan.style.setProperty('--y', `${y * reach}dvh`);
       fan.style.setProperty('--spin', `${index % 2 ? -1 : 1}turn`);
       fan.style.setProperty('--tilt', `${index * 53 % 360}deg`);
-      fan.style.setProperty('--size', `${12 + index * 7 % 19}px`);
+      fan.style.setProperty('--size', `${15 + index * 7 % 22}px`);
       fan.style.setProperty('--delay', `${index % 5 * 18}ms`);
       const shape = document.createElementNS(svgNamespace, 'path');
       // 添付の扇形をそのまま使い、1枚ずつ画面に散らす。
@@ -31,7 +37,7 @@
       layer.append(fan);
     }
     document.body.append(layer);
-    window.setTimeout(() => layer.remove(), 1200);
+    window.setTimeout(() => layer.remove(), 1500);
   }
 
   function balloons() {
