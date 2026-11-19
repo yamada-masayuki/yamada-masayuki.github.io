@@ -68,16 +68,12 @@
   putWithRuby(document.querySelector('.answer-breadcrumb span:last-child'), item.spot);
   document.getElementById('answer-illustration').src = `../assets/images/${item.icon}.svg`;
 
-  const gallery = document.createElement('section');
+  const gallery = document.createElement('div');
   gallery.className = 'answer-block answer-gallery';
   gallery.hidden = true;
-  gallery.setAttribute('aria-labelledby', 'answer-gallery-heading');
-  const galleryHeading = document.createElement('h2');
-  galleryHeading.id = 'answer-gallery-heading';
-  galleryHeading.textContent = '写真';
   const photos = document.createElement('div');
   photos.className = 'answer-photos';
-  gallery.append(galleryHeading, photos);
+  gallery.append(photos);
   document.querySelector('.correct-block').after(gallery);
 
   for (const photo of item.photos) {
@@ -95,6 +91,7 @@
     figure.append(image, figcaption);
     photos.append(figure);
     image.addEventListener('load', () => {
+      image.classList.toggle('is-portrait', image.naturalHeight > image.naturalWidth);
       figure.hidden = false;
       gallery.hidden = false;
     }, { once: true });
