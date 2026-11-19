@@ -111,6 +111,7 @@ h2 { font-size: 20px; letter-spacing: .025em; line-height: 1.55; }
 .answer-photos { display:grid; gap:24px; }
 .answer-photos figure { margin:0; }
 .answer-photos img { display:block; max-width:100%; height:auto; border-radius:10px; }
+.answer-photos img.is-portrait { max-width:80%; max-height:min(440px, 55svh); margin-inline:auto; }
 .answer-photos figcaption p { margin:10px 0 0; font-size:1rem; line-height:1.7; }
 .answer-photos figcaption small { display:block; margin-top:4px; color:var(--muted); font-size:.8rem; overflow-wrap:anywhere; }
 .unlock-panel { text-align:center; background:var(--forest-deep); color:var(--ink); border-radius:var(--radius); margin-top:30px; padding:32px 25px 36px; }
