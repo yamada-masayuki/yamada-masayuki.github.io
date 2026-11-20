@@ -1,1 +1,13 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="400" height="300" viewBox="0 0 400 300" role="img" aria-label="avenue"><rect width="400" height="300" rx="28" fill="#EFE6D7"/><circle cx="329" cy="58" r="95" fill="#E9D9BF" opacity=".65"/><circle cx="75" cy="247" r="110" fill="#D4DBBF" opacity=".45"/><path d="M165 225l-60-165M235 225l60-165" stroke="#D5B9A0" stroke-width="5"/><path d="M155 225L85 68M245 225l70-157" stroke="#A38465" stroke-width="7"/><path d="M117 111v111m166-111v111" stroke="#755A44" stroke-width="10"/><circle cx="117" cy="93" r="53" fill="#A6AD75"/><circle cx="283" cy="93" r="53" fill="#D7B46A"/><circle cx="88" cy="119" r="31" fill="#B4BF88"/><circle cx="310" cy="121" r="31" fill="#C8A05C"/><path d="M176 165h48v60h-48z" fill="#B8795C"/><path d="M189 148h22v25h-22z" fill="#845549"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="300" viewBox="0 0 400 300">
+  <rect width="400" height="300" rx="28" fill="#EFE6D7"/>
+  <circle cx="329" cy="58" r="95" fill="#E9D9BF" opacity=".65"/>
+  <circle cx="75" cy="247" r="110" fill="#D4DBBF" opacity=".45"/>
+  <path d="M23 224q64-21 130-61h94q66 40 130 61v28H23z" fill="#B1BD95"/>
+  <path d="M175 160h50l129 95H46z" fill="#D7AC60"/>
+  <path d="M183 153v-21h34v21m-23 0v-11h12v11" fill="#B77758" stroke="#875D48" stroke-width="3"/>
+  <path d="M77 209q8-65-4-118m52 93-5-67m34 52-3-46m172 86q-8-65 4-118m-52 93 5-67m-34 52 3-46" fill="none" stroke="#795840" stroke-width="9" stroke-linecap="round"/>
+  <path d="M83 140l-29-32m29 37 27-46m207 41 29-32m-29 37-27-46" fill="none" stroke="#795840" stroke-width="6"/>
+  <g fill="#BB8D3E"><circle cx="89" cy="88" r="39"/><circle cx="142" cy="106" r="30"/><circle cx="168" cy="119" r="18"/><circle cx="311" cy="88" r="39"/><circle cx="258" cy="106" r="30"/><circle cx="232" cy="119" r="18"/></g>
+  <path d="M34 96q-9-25 18-37 7-25 33-20 13-14 28 2 27 1 30 26 27 5 30 29-24 14-48 6-29 22-49 3-26 15-42-9zm332 0q9-25-18-37-7-25-33-20-13-14-28 2-27 1-30 26-27 5-30 29 24 14 48 6 29 22 49 3 26 15 42-9z" fill="#DBAF52"/>
+  <path d="M102 235l12-4m13 12 9 1m19-24 9 2m72-12 7 2m22 21 13 1m7 11 10-2m-104-39 6 1" stroke="#F3D887" stroke-width="4" stroke-linecap="round"/>
+</svg>

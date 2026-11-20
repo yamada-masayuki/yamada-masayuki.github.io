@@ -1,1 +1,14 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="400" height="300" viewBox="0 0 400 300" role="img" aria-label="library"><rect width="400" height="300" rx="28" fill="#EFE6D7"/><circle cx="329" cy="58" r="95" fill="#E9D9BF" opacity=".65"/><circle cx="75" cy="247" r="110" fill="#D4DBBF" opacity=".45"/><path d="M74 220V105h252v115" fill="#CA9B79"/><path d="M62 104l138-45 138 45" fill="none" stroke="#916B56" stroke-width="10" stroke-linejoin="round"/><path d="M99 118v93m48-93v93m48-93v93m48-93v93m48-93v93" stroke="#805B4D" stroke-width="12"/><path d="M86 215h228" stroke="#F0D5B8" stroke-width="9"/><path d="M64 224h272" stroke="#7E5C50" stroke-width="8"/><path d="M184 69v29h32V69" fill="#ECE0BE"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="300" viewBox="0 0 400 300">
+  <rect width="400" height="300" rx="28" fill="#EFE6D7"/>
+  <circle cx="329" cy="58" r="95" fill="#E9D9BF" opacity=".65"/>
+  <circle cx="75" cy="247" r="110" fill="#D4DBBF" opacity=".45"/>
+  <ellipse cx="200" cy="229" rx="154" ry="21" fill="#C8C9A4"/>
+  <path d="M52 216V103h45V75h206v28h45v113z" fill="#BC9376" stroke="#896955" stroke-width="4"/>
+  <path d="M97 74q22-10 42 0 21-10 41 0 20-10 40 0 20-10 41 0 20-10 42 0v83H97z" fill="#D7B899" stroke="#A58266" stroke-width="4"/>
+  <path d="M139 78v73m41-73v73m40-73v73m41-73v73" stroke="#B79477" stroke-width="4"/>
+  <path d="M111 91h16v17h-16zm40 0h16v17h-16zm41 0h16v17h-16zm41 0h16v17h-16zm41 0h16v17h-16zm-163 29h16v24h-16zm40 0h16v24h-16zm41 0h16v24h-16zm41 0h16v24h-16zm41 0h16v24h-16zM67 121h14v38H67zm252 0h14v38h-14z" fill="#766D5E"/>
+  <path d="M93 216v-26a16 16 0 0 1 32 0v26m13 0v-26a16 16 0 0 1 32 0v26m14 0v-26a16 16 0 0 1 32 0v26m14 0v-26a16 16 0 0 1 32 0v26m13 0v-26a16 16 0 0 1 32 0v26" fill="#775E4D" stroke="#F0D4AE" stroke-width="5"/>
+  <path d="M65 221h270" stroke="#947B64" stroke-width="4" stroke-linecap="round"/>
+  <ellipse cx="200" cy="237" rx="66" ry="10" fill="#E7CFAB" stroke="#AA9177" stroke-width="4"/>
+  <ellipse cx="200" cy="235" rx="54" ry="5" fill="#91A9A0"/>
+</svg>
