@@ -54,10 +54,8 @@
   if (result.added) window.QuizCelebration.discovery();
   document.title = `${item.title} | クイズで巡る東大本郷`;
   const put = (id, value) => { document.getElementById(id).textContent = value; };
-  put('answer-number', 'QUIZ & DISCOVERY');
   const fields = {
-    'answer-spot': item.eyebrow,
-    'answer-title': item.title,
+    'answer-title': item.spot,
     'answer-question': item.question,
     'answer-correct': item.answer,
     'answer-explanation': item.explanation,
