@@ -1,1 +1,12 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="400" height="300" viewBox="0 0 400 300" role="img" aria-label="pond"><rect width="400" height="300" rx="28" fill="#EFE6D7"/><circle cx="329" cy="58" r="95" fill="#E9D9BF" opacity=".65"/><circle cx="75" cy="247" r="110" fill="#D4DBBF" opacity=".45"/><path d="M64 177c45-28 83-7 122-26 42-20 94-9 151 21-21 41-77 54-133 42-58 10-101 1-140-37Z" fill="#8DBEB5"/><path d="M93 181c65 4 84-22 143-12 34 6 63 3 81 11" stroke="#E5F3E9" stroke-width="5" fill="none" stroke-linecap="round"/><path d="M72 151c8-38 23-64 43-88M309 149c-12-30-21-49-38-69" stroke="#826B4A" stroke-width="8" stroke-linecap="round"/><circle cx="99" cy="84" r="35" fill="#A8B77C"/><circle cx="280" cy="84" r="40" fill="#D9BA76"/><path d="M165 195l16 8m37-25l18 8" stroke="#4D918B" stroke-width="4" stroke-linecap="round"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="300" viewBox="0 0 400 300">
+  <rect width="400" height="300" rx="28" fill="#EFE6D7"/>
+  <circle cx="329" cy="58" r="95" fill="#E9D9BF" opacity=".65"/>
+  <circle cx="75" cy="247" r="110" fill="#D4DBBF" opacity=".45"/>
+  <path d="M29 171q17-58 65-55 13-53 59-41 27-41 59-15 43-24 65 17 46-10 60 28 32 2 35 47l-20 54H51z" fill="#8D9D76"/>
+  <path d="M30 179q20-49 50-31 27-38 58-16 17-35 49-20 17-32 47-13 35-12 48 16 39-12 53 21 27-7 36 30l-29 43H58z" fill="#647C61"/>
+  <path d="M58 173q27-20 86-24 51-4 84 10 28 9 67 4 45-5 56 17 11 24-34 45-57 22-174 13-72-5-85-24-16-19 0-41z" fill="#789D9A" stroke="#B5B28E" stroke-width="8"/>
+  <path d="M77 187q40-14 69-11m-42 24 52-1m24 19 58 1m-2-32 69-5m-33 23 33-3" fill="none" stroke="#B9CBC0" stroke-width="4" stroke-linecap="round"/>
+  <path d="M34 217l22-19 22 3 16 20-22 10zm270 12 20-17 24 5 15 17-30 8z" fill="#9A927A"/>
+  <path d="M43 182q15-66 9-109m0 49 31-32m258 88q-8-53 5-101m-9 57-30-26" fill="none" stroke="#78654D" stroke-width="6" stroke-linecap="round"/>
+  <path d="M30 85q3-35 36-35 27-17 47 12 18 10 7 29-30 15-50 2-23 15-40-8zm248 1q6-27 30-27 17-23 46-9 29-4 37 27-7 24-38 17-21 18-47 5-18 3-28-13z" fill="#A6AD77"/>
+</svg>
