@@ -6,4 +6,6 @@
   <path d="M65 225v-88h270v88z" fill="#B77057"/>
   <path d="M151 225V123h15V64h12V52h44v12h12v59h15v102z" fill="#965742"/>
   <path d="M178 225v-44c0-13 9-27 22-38 13 11 22 25 22 38v44z" fill="#EFE6D7"/>
+  <circle cx="200" cy="91" r="13" fill="#EFE6D7"/>
+  <path d="M200 84v7l5 4" fill="none" stroke="#965742" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>
