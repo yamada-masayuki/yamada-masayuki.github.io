@@ -10,7 +10,7 @@
   dialog.className = 'exploration-map';
   dialog.setAttribute('aria-labelledby', 'map-heading');
   dialog.innerHTML = `
-    <div class="map-heading"><h2 id="map-heading">散策マップ</h2><button type="button" class="map-close" aria-label="地図を閉じる"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><path d="m6 6 12 12M18 6 6 18"/></svg></button></div>
+    <div class="map-heading"><h2 id="map-heading">クイズスポットの地図</h2><button type="button" class="map-close" aria-label="地図を閉じる"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><path d="m6 6 12 12M18 6 6 18"/></svg></button></div>
     <div class="map-frame"></div>
     <ul class="map-notes">
       <li>GPSによる現在地には誤差があるため、周囲の目印も確認してください。</li>
@@ -23,7 +23,7 @@
     // 地図は初回に開く時だけ読み込み、通常のクイズ表示を遅らせない。
     if (!dialog.querySelector('iframe')) {
       const frame = document.createElement('iframe');
-      frame.title = '東京大学本郷キャンパスの散策マップ';
+      frame.title = 'クイズスポットの地図';
       frame.src = 'https://www.google.com/maps/d/u/0/embed?mid=1dQVVcPS3Hyamz2AAxIutZZMYH9hSGLg&ehbc=2E312F';
       frame.referrerPolicy = 'no-referrer';
       frame.allowFullscreen = true;
