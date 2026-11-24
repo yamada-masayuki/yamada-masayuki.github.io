@@ -6,6 +6,7 @@ window.QUIZ_CONFIG = Object.freeze({
     {
       "id": 1,
       "token": "ほ",
+      "keywordNumber": 1,
       "spot": "赤門",
       "title": "赤門が迎えた人",
       "question": "1827年に建立された赤門は、誰を加賀藩前田家に迎えるための門だったでしょう？",
@@ -25,6 +26,7 @@ window.QUIZ_CONFIG = Object.freeze({
     {
       "id": 2,
       "token": "ご",
+      "keywordNumber": 3,
       "spot": "正門",
       "title": "正門から続く銀杏並木",
       "question": "明治時代後期、正門から続く銀杏並木の整備を進めた東京帝国大学総長は誰でしょう？",
@@ -44,6 +46,7 @@ window.QUIZ_CONFIG = Object.freeze({
     {
       "id": 3,
       "token": "り",
+      "keywordNumber": 7,
       "spot": "安田講堂",
       "title": "安田講堂は何階建て？",
       "question": "安田講堂は何階建てでしょう？",
@@ -63,6 +66,7 @@ window.QUIZ_CONFIG = Object.freeze({
     {
       "id": 4,
       "token": "う",
+      "keywordNumber": 4,
       "spot": "三四郎池",
       "title": "三四郎池と夏目漱石",
       "question": "育徳園心字池が「三四郎池」と呼ばれるきっかけとなった小説の作者は誰でしょう？",
@@ -82,6 +86,7 @@ window.QUIZ_CONFIG = Object.freeze({
     {
       "id": 5,
       "token": "お",
+      "keywordNumber": 6,
       "spot": "法文1号館",
       "title": "法文1号館の建築",
       "question": "この建物を含む東京大学の近代校舎群に見られる建築様式を何と呼ぶでしょう？",
@@ -101,6 +106,7 @@ window.QUIZ_CONFIG = Object.freeze({
     {
       "id": 6,
       "token": "ん",
+      "keywordNumber": 2,
       "spot": "総合図書館",
       "title": "総合図書館の正面を見上げて",
       "question": "総合図書館を正面から見たとき、何に見えるようにデザインされているでしょう？",
@@ -120,6 +126,7 @@ window.QUIZ_CONFIG = Object.freeze({
     {
       "id": 7,
       "token": "ど",
+      "keywordNumber": 5,
       "spot": "工学部広場",
       "title": "工学部広場の像",
       "question": "この人物が東京大学の前身で教えていた分野は？\n(ヒント) 像の基部にあるレリーフを見てみよう！",

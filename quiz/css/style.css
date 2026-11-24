@@ -67,7 +67,20 @@ h2 { font-size: 20px; letter-spacing: .025em; line-height: 1.55; }
 .status-waiting { color: #686254; background:#f3efdf; }
 .status-done { color: var(--forest); background: #ffcc00; font-weight:700; }
 .keyword-value { display:flex; flex:1; align-items:center; justify-content:center; min-height:83px; font-size: 40px; font-weight:700; color:#807766; letter-spacing: .08em; }
-.is-unlocked .keyword-value { font-size: 72px; line-height:1.5; font-weight:800; color:var(--forest); letter-spacing:0; }
+.is-unlocked .keyword-value { gap:.12em; font-size:72px; line-height:1.5; font-weight:800; color:var(--forest); letter-spacing:0; }
+.keyword-number {
+  display:grid;
+  place-items:center;
+  flex:none;
+  width:1.15em;
+  height:1.15em;
+  border-radius:50%;
+  background:var(--forest);
+  color:#fff;
+  font-size:.58em;
+  line-height:1;
+  text-shadow:none;
+}
 .keyword-card-footer { border-top: 1px solid var(--line); padding-top: 10px; min-height: 34px; }
 .card-hint { display:block; font-size: 10px; letter-spacing: -.025em; color:#686254; text-align:center; }
 .card-link { text-decoration:none; color:var(--forest); font-size: 11px; font-weight: 700; display:block; text-align:center; }
@@ -352,6 +365,6 @@ body { padding-bottom: calc(82px + env(safe-area-inset-bottom)); }
 
 /* Keep three-column cards readable on narrow phones. */
 .card-link { overflow-wrap:anywhere; }
-@media (max-width: 380px) {
-  .is-unlocked .keyword-value { font-size:52px; }
+@media (max-width: 520px) {
+  .is-unlocked .keyword-value { font-size:clamp(30px, 10vw, 52px); }
 }
