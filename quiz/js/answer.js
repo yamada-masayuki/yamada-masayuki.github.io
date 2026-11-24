@@ -97,8 +97,11 @@
   }
 
   put('answer-letter-number', '発見した文字');
-  put('answer-keyword', item.token);
-  document.getElementById('answer-keyword').setAttribute('aria-label', `発見した文字 ${item.token}`);
+  const keyword = document.getElementById('answer-keyword');
+  const badge = document.createElement('span');
+  badge.className = 'keyword-number';
+  badge.textContent = String(item.keywordNumber);
+  keyword.replaceChildren(badge, ' ', item.token);
   if (!result.ok) {
     put('answer-record-message', '文字は表示されていますが、このブラウザには記録を保存できませんでした。');
   }
