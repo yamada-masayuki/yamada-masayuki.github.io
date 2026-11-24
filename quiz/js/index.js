@@ -32,8 +32,15 @@
 
     const value = document.createElement('div');
     value.className = 'keyword-value';
-    value.textContent = visited ? item.token : '？';
-    value.setAttribute('aria-label', visited ? `発見した文字 ${item.token}` : '未発見の文字');
+    if (visited) {
+      const badge = document.createElement('span');
+      badge.className = 'keyword-number';
+      badge.textContent = String(item.keywordNumber);
+      value.append(badge, item.token);
+    } else {
+      value.textContent = '？';
+      value.setAttribute('aria-label', '未発見の文字');
+    }
 
     const footer = document.createElement('div');
     footer.className = 'keyword-card-footer';
