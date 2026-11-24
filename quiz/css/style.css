@@ -128,7 +128,8 @@ h2 { font-size: 20px; letter-spacing: .025em; line-height: 1.55; }
 .unlock-panel { text-align:center; background:var(--forest-deep); color:var(--ink); border-radius:var(--radius); margin-top:30px; padding:32px 25px 36px; }
 .unlock-panel h2 { margin:8px 0 0; font-size:21px; }
 .unlock-panel .unlocked-number { display: inline-block; margin: 20px 0 0; padding: 4px 18px; border: 2px solid #29251f; border-radius: 100px; color: var(--ink); font-size: 24px; font-weight: 800; }
-.unlocked-letter { display:grid; place-items:center; width:110px; height:110px; margin:23px auto 16px; background:#fbf9f0; border:7px solid #ffcc00; box-shadow:0 0 0 3px rgba(255,255,255,.24); border-radius: 18px; color:var(--ink); font-size:65px; font-weight:900; line-height:1; }
+.unlocked-letter { display:grid; place-items:center; width:152px; height:110px; margin:23px auto 16px; background:#fbf9f0; border:7px solid #ffcc00; box-shadow:0 0 0 3px rgba(255,255,255,.24); border-radius: 18px; color:var(--ink); font-size:65px; font-weight:900; line-height:1; }
+#answer-keyword { display:flex; align-items:center; gap:.12em; }
 .unlock-panel p { color:#29251f; line-height:1.9; font-size:12px; margin:14px 0 22px; }
 .primary-button { display:inline-flex; align-items:center; gap:35px; justify-content:space-between; border-radius:100px; padding:13px 23px 13px 27px; background:#f7f6ef; color:var(--ink); text-decoration:none; font-size:13px; font-weight:800; min-width:230px; transition: background .2s ease, transform .2s ease; }
 .primary-button:hover { background: #e9ede4; transform:translateY(-2px); }
