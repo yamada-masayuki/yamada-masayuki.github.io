@@ -12,7 +12,7 @@
   dialog.innerHTML = `
     <div class="map-heading">
       <h2 id="map-heading">クイズスポットの地図</h2>
-      <a class="map-app-link" href="https://www.google.com/maps/search/?api=1&amp;query=%E6%9D%B1%E4%BA%AC%E5%A4%A7%E5%AD%A6%E6%9C%AC%E9%83%B7%E3%82%AD%E3%83%A3%E3%83%B3%E3%83%91%E3%82%B9" target="_blank" rel="noopener noreferrer">Google マップで本郷キャンパスを開く <span aria-hidden="true">↗</span></a>
+      <a class="map-app-link" href="https://www.google.com/maps/d/viewer?mid=1dQVVcPS3Hyamz2AAxIutZZMYH9hSGLg" target="_blank" rel="noopener noreferrer">Google マップで本郷キャンパスを開く <span aria-hidden="true">↗</span></a>
       <button type="button" class="map-close" autofocus aria-label="地図を閉じる"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><path d="m6 6 12 12M18 6 6 18"/></svg></button>
     </div>
     <div class="map-frame"></div>
