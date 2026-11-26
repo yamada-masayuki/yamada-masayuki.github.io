@@ -48,7 +48,7 @@
       const link = document.createElement('a');
       link.href = `qr/${item.file}`;
       link.className = 'card-link';
-      link.textContent = `${item.spot}の解説を見る`;
+      link.textContent = `${item.spot}のクイズをふり返る`;
       const arrow = document.createElement('span');
       arrow.setAttribute('aria-hidden', 'true');
       arrow.textContent = ' ↗';
