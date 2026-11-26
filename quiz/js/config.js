@@ -5,7 +5,7 @@ window.QUIZ_CONFIG = Object.freeze({
   "items": [
     {
       "id": 1,
-      "token": "ほ",
+      "token": "\u307b",
       "keywordNumber": 1,
       "spot": "赤門",
       "title": "赤門が迎えた人",
@@ -25,7 +25,7 @@ window.QUIZ_CONFIG = Object.freeze({
     },
     {
       "id": 2,
-      "token": "ご",
+      "token": "\u3054",
       "keywordNumber": 2,
       "spot": "正門",
       "title": "正門から続く銀杏並木",
@@ -45,7 +45,7 @@ window.QUIZ_CONFIG = Object.freeze({
     },
     {
       "id": 3,
-      "token": "り",
+      "token": "\u308a",
       "keywordNumber": 3,
       "spot": "安田講堂",
       "title": "安田講堂は何階建て？",
@@ -65,7 +65,7 @@ window.QUIZ_CONFIG = Object.freeze({
     },
     {
       "id": 4,
-      "token": "う",
+      "token": "\u3046",
       "keywordNumber": 4,
       "spot": "三四郎池",
       "title": "三四郎池と夏目漱石",
@@ -85,7 +85,7 @@ window.QUIZ_CONFIG = Object.freeze({
     },
     {
       "id": 5,
-      "token": "お",
+      "token": "\u304a",
       "keywordNumber": 5,
       "spot": "法文1号館",
       "title": "法文1号館の建築",
@@ -105,7 +105,7 @@ window.QUIZ_CONFIG = Object.freeze({
     },
     {
       "id": 6,
-      "token": "ん",
+      "token": "\u3093",
       "keywordNumber": 6,
       "spot": "総合図書館",
       "title": "総合図書館の正面を見上げて",
@@ -125,7 +125,7 @@ window.QUIZ_CONFIG = Object.freeze({
     },
     {
       "id": 7,
-      "token": "ど",
+      "token": "\u3069",
       "keywordNumber": 7,
       "spot": "工学部広場",
       "title": "工学部広場の像",
