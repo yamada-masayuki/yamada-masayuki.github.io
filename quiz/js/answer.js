@@ -1,10 +1,31 @@
-(function () {
+(async function () {
   'use strict';
   const pageId = Number(document.body.dataset.pageId);
-  const item = window.QUIZ_CONFIG.items.find((value) => value.id === pageId);
-  if (!item) {
+  const route = window.QuizRoutes.parseFile(window.location.pathname.split('/').pop());
+  if (!route || route.spot.id !== pageId) {
     document.getElementById('answer-title').textContent = 'ページが見つかりません';
     document.getElementById('answer-main').hidden = true;
+    return;
+  }
+
+  const { spot, suffix, file } = route;
+  const sections = document.querySelectorAll('.question-block, .correct-block, .unlock-panel');
+  sections.forEach((section) => { section.hidden = true; });
+  let item;
+  try {
+    const response = await fetch(`../data/${window.QuizRoutes.dataFileFor(file)}`);
+    if (!response.ok) throw new Error('Quiz data unavailable');
+    item = await response.json();
+    if (item?.id !== pageId || !window.QuizProgress.isToken(item.token) ||
+        !['title', 'icon', 'question', 'answer', 'explanation'].every((key) => typeof item[key] === 'string') ||
+        !Array.isArray(item.photos) || !item.photos.every((photo) =>
+          ['file', 'alt', 'caption', 'credit'].every((key) => typeof photo?.[key] === 'string'))) {
+      throw new Error('Invalid quiz data');
+    }
+  } catch {
+    const warning = document.getElementById('storage-warning');
+    warning.textContent = 'クイズを読み込めませんでした。通信環境を確認してページを再読み込みしてください。';
+    warning.hidden = false;
     return;
   }
 
@@ -50,12 +71,12 @@
   }
 
   // ページを開いた時点で自動的に解放する。ボタン操作は不要。
-  const result = window.QuizProgress.markVisited(pageId);
+  const result = window.QuizProgress.markVisited(pageId, suffix, item.token);
   if (result.added) window.QuizCelebration.discovery();
   document.title = `${item.title} | クイズで巡る東大本郷`;
   const put = (id, value) => { document.getElementById(id).textContent = value; };
   const fields = {
-    'answer-title': item.spot,
+    'answer-title': spot.spot,
     'answer-question': item.question,
     'answer-correct': item.answer,
     'answer-explanation': item.explanation,
@@ -63,7 +84,7 @@
   for (const [id, text] of Object.entries(fields)) {
     putWithRuby(document.getElementById(id), text);
   }
-  putWithRuby(document.querySelector('.answer-breadcrumb span:last-child'), item.spot);
+  putWithRuby(document.querySelector('.answer-breadcrumb span:last-child'), spot.spot);
   document.getElementById('answer-illustration').src = `../assets/images/${item.icon}.svg`;
 
   const gallery = document.createElement('div');
@@ -100,14 +121,13 @@
   const keyword = document.getElementById('answer-keyword');
   const badge = document.createElement('span');
   badge.className = 'keyword-number';
-  badge.textContent = String(item.keywordNumber);
+  badge.textContent = String(spot.keywordNumber);
   keyword.replaceChildren(badge, ' ', item.token);
   if (!result.ok) {
     put('answer-record-message', '文字は表示されていますが、このブラウザには記録を保存できませんでした。');
-  }
-  if (!result.ok) {
     const warning = document.getElementById('storage-warning');
     warning.textContent = 'このブラウザに解放状態を保存できませんでした。文字は表示されていますが、一覧ページに記録されない可能性があります。';
     warning.hidden = false;
   }
+  sections.forEach((section) => { section.hidden = false; });
 }());

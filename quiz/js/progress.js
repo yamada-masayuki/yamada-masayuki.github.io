@@ -1,45 +1,60 @@
-/* 訪問済みの問題IDを localStorage に保存する。認証・サーバー通信は行わない。 */
+/* 地点ごとに発見した文字と回答URLの識別子を保存する。 */
 (function () {
   'use strict';
-  const config = window.QUIZ_CONFIG;
-  const key = config.storageKey;
-  const allowedIds = new Set(config.items.map((item) => item.id));
+  const { storageKey, items } = window.QUIZ_CONFIG;
+  const { isSuffix } = window.QuizRoutes;
+  const allowedIds = new Set(items.map((item) => item.id));
+  const recordKey = (id) => `${storageKey}:visit:${id}`;
 
-  function normalizeIds(value) {
-    if (!Array.isArray(value)) return [];
-    return [...new Set(value.filter((id) => Number.isInteger(id) && allowedIds.has(id)))];
+  function isToken(value) {
+    return typeof value === 'string' && [...value].length === 1 && value.trim() !== '';
   }
 
   function read() {
+    const records = new Map();
+    let corrupted = false;
     try {
-      const text = window.localStorage.getItem(key);
-      if (text === null) return { ids: [], available: true, corrupted: false };
-      const parsed = JSON.parse(text);
-      if (!Array.isArray(parsed)) return { ids: [], available: true, corrupted: true };
-      return { ids: normalizeIds(parsed), available: true, corrupted: false };
-    } catch (error) {
-      if (error instanceof SyntaxError) {
-        return { ids: [], available: true, corrupted: true };
+      for (const id of allowedIds) {
+        const value = window.localStorage.getItem(recordKey(id));
+        if (value === null) continue;
+        try {
+          const record = JSON.parse(value);
+          if (isToken(record?.token) && isSuffix(record.suffix) && Number.isFinite(record.visitedAt)) {
+            records.set(id, record);
+          } else {
+            corrupted = true;
+          }
+        } catch {
+          corrupted = true;
+        }
       }
-      return { ids: [], available: false, corrupted: false };
+    } catch {
+      return { ids: [], records: new Map(), available: false, corrupted: false };
     }
+
+    const ids = [...records.keys()].sort((a, b) => records.get(a).visitedAt - records.get(b).visitedAt);
+    return { ids, records, available: true, corrupted };
   }
 
-  function markVisited(id) {
-    if (!allowedIds.has(id)) return { ok: false, added: false, state: read() };
+  function markVisited(id, suffix, token) {
+    if (!allowedIds.has(id) || !isSuffix(suffix) || !isToken(token)) return { ok: false, added: false };
     const state = read();
-    if (!state.available) return { ok: false, added: false, state };
-    if (state.ids.includes(id) && !state.corrupted) {
-      return { ok: true, added: false, state };
-    }
-    const nextIds = normalizeIds([...state.ids, id]);
+    if (!state.available) return { ok: false, added: false };
+    const existing = state.records.get(id);
+    if (existing?.token === token && existing.suffix === suffix) return { ok: true, added: false };
     try {
-      window.localStorage.setItem(key, JSON.stringify(nextIds));
-      return { ok: true, added: !state.ids.includes(id), state: { ids: nextIds, available: true, corrupted: false } };
-    } catch (error) {
-      return { ok: false, added: false, state: { ...state, available: false } };
+      const visitedAt = existing?.visitedAt ?? (performance.timeOrigin + performance.now());
+      window.localStorage.setItem(recordKey(id), JSON.stringify({ suffix, token, visitedAt }));
+      return { ok: true, added: !existing };
+    } catch {
+      return { ok: false, added: false };
     }
   }
 
-  window.QuizProgress = Object.freeze({ read, markVisited });
+  function clear() {
+    for (const id of allowedIds) window.localStorage.removeItem(recordKey(id));
+    window.localStorage.removeItem(`${storageKey}-celebration-seen-v1`);
+  }
+
+  window.QuizProgress = Object.freeze({ read, markVisited, clear, isToken });
 }());
