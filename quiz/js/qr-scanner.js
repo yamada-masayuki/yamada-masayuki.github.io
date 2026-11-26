@@ -1,14 +1,12 @@
 /* 全ページ共通QRリーダー：カメラ映像と選択した写真は端末内でのみ解析する。 */
 (function () {
   'use strict';
-  const config = window.QUIZ_CONFIG;
+  const { parseFile, dataFileFor } = window.QuizRoutes;
   const script = document.currentScript;
   // /quiz/ のようなサブディレクトリでも動作するよう、JSの設置位置からサイトルートを求める。
   const siteRoot = new URL('../', script.src);
-  const knownPages = new Map(config.items.map((item) => {
-    const page = new URL(`qr/${item.file}`, siteRoot);
-    return [page.pathname, { title: item.spot, url: page.href }];
-  }));
+  const answersRoot = new URL('qr/', siteRoot);
+  const notQuizMessage = 'このクイズのQRコードではありません。別のコードを読み取ってください。';
 
   const button = document.createElement('button');
   button.type = 'button';
@@ -63,14 +61,17 @@
   let detector = null;
   let navigating = false;
   let navigationTimer = 0;
+  let validation = null;
+  let rejected = null;
 
-  // URLは文字列の前方一致ではなく、同一オリジン＋登録済みパスで厳密に照合する。
+  // 同じ公開先の qr/ 直下にある回答ページ形式だけを照合する。
   function matchUrl(raw) {
     if (typeof raw !== 'string') return null;
     let parsed;
     try { parsed = new URL(raw.trim()); } catch (error) { return null; }
     if (parsed.origin !== siteRoot.origin || parsed.username || parsed.password || parsed.protocol !== siteRoot.protocol) return null;
-    return knownPages.get(parsed.pathname) || null;
+    if (!parsed.pathname.startsWith(answersRoot.pathname)) return null;
+    return parseFile(parsed.pathname.slice(answersRoot.pathname.length));
   }
 
   function say(message, isError = false) {
@@ -80,6 +81,8 @@
   }
 
   function stopCamera() {
+    validation?.abort();
+    validation = null;
     if (frameId) cancelAnimationFrame(frameId);
     frameId = 0;
     if (stream) stream.getTracks().forEach((track) => track.stop());
@@ -102,11 +105,43 @@
     if (previousFocus && document.contains(previousFocus)) previousFocus.focus();
   }
 
-  function onDetected(raw) {
-    if (!open || navigating) return true;
+  async function onDetected(raw, token) {
+    if (!open || navigating || token !== generation) return true;
     const found = matchUrl(raw);
     if (!found) {
-      say('このクイズのQRコードではありません。別のコードを読み取ってください。', true);
+      say(notQuizMessage, true);
+      return false;
+    }
+    if (rejected?.file === found.file && Date.now() < rejected.until) return false;
+
+    const controller = new AbortController();
+    validation = controller;
+    const timeout = window.setTimeout(() => controller.abort(), 8000);
+    let data;
+    let connectionFailed = false;
+    try {
+      const response = await fetch(new URL(`data/${dataFileFor(found.file)}`, siteRoot), {
+        redirect: 'error',
+        signal: controller.signal,
+      });
+      if (response.ok) {
+        data = await response.json().catch(() => null);
+      } else {
+        connectionFailed = response.status !== 404 && response.status !== 410;
+      }
+    } catch {
+      connectionFailed = true;
+    } finally {
+      clearTimeout(timeout);
+      if (validation === controller) validation = null;
+    }
+
+    if (!open || navigating || token !== generation) return true;
+    if (data?.id !== found.spot.id || !window.QuizProgress.isToken(data.token)) {
+      rejected = { file: found.file, until: Date.now() + (connectionFailed ? 2000 : 5000) };
+      say(connectionFailed
+        ? 'クイズを確認できませんでした。通信環境を確認して、もう一度お試しください。'
+        : notQuizMessage, true);
       return false;
     }
     navigating = true;
@@ -114,10 +149,10 @@
     stopCamera();
     retry.hidden = true;
     modal.querySelector('.scanner-pick').disabled = true;
-    say(`✓ 読み取り成功！ ${found.title}の解答ページを開きます。`);
+    say(`✓ 読み取り成功！ ${found.spot.spot}の解答ページを開きます。`);
     status.classList.add('is-success');
     navigationTimer = window.setTimeout(() => {
-      if (open && navigating) window.location.assign(found.url);
+      if (open && navigating) window.location.assign(new URL(found.file, answersRoot));
     }, 1000);
     return true;
   }
@@ -155,7 +190,7 @@
       try {
         const decoded = await decodeFrame(video, video.videoWidth, video.videoHeight);
         if (!open || token !== generation) return;
-        if (decoded && onDetected(decoded)) return;
+        if (decoded && await onDetected(decoded, token)) return;
       } catch (error) {
         // 一時的なフレーム取得失敗ではカメラを止めず、次のフレームを試す。
         console.warn('QR frame decode error:', error);
@@ -168,6 +203,7 @@
     if (navigating) return;
     const token = ++generation;
     stopCamera();
+    rejected = null;
     retry.hidden = true;
     say('カメラを起動しています。必要な場合は使用を許可してください。');
     if (!createDetector()) {
@@ -236,6 +272,7 @@
     const token = ++generation;
     stopCamera();
     retry.hidden = false;
+    rejected = null;
     say('選択した画像を解析しています。');
     const objectUrl = URL.createObjectURL(file);
     try {
@@ -248,7 +285,7 @@
       const decoded = await decodeFrame(image, image.naturalWidth, image.naturalHeight);
       if (!open || token !== generation) return;
       if (!decoded) say('QRコードが見つかりませんでした。明るく鮮明な写真で再度お試しください。', true);
-      else onDetected(decoded);
+      else await onDetected(decoded, token);
     } catch (error) {
       if (open && token === generation) say('画像を読み取れませんでした。別の写真をお試しください。', true);
     } finally {
